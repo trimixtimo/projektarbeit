@@ -1,0 +1,2 @@
+1ms zwischen zwei Messpunkten
+4096 entspricht 3,3V 
