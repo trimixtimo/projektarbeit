@@ -1,4 +1,4 @@
-data = Messung02010; 
+data = 'Messung02010; 
 [rows, cols] = size(data);
 newData = data;
 for i = 1: rows
