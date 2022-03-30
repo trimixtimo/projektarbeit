@@ -2,8 +2,28 @@
  * Testfirmware_LED.c
  *
  * Created: 30.03.2022 11:53:45
- * Author : timok
+ * Author : Timo Klaas
  */ 
+
+/*
+ * A0 TX
+ * A1 RX
+ * A3 CS
+ * A4 MOSI
+ * A5 MISO
+ * A6 SCK
+ * A7 !SS
+ * C0 Button
+ * PD1 RAW_IN
+ * PD2 HULL_IN
+ * PD5 LED1 Grün
+ * PD6 LED2 Blau
+ * PD7 VSENSE
+ */
+
+
+
+
 #define F_CPU 4000000UL	//Takt 4MHz
 
 
