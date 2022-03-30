@@ -8,10 +8,8 @@ voltage = decData * 0.80566;
 
 %Graphen plotten
 figure;
-x = voltage; %Zeitachse
-y = voltage; %mV
-plot(x,y);
-[rows, columns] = voltage;
+x = A{};
+plot(voltage);
 title('Spannung über Zeit'); % Titel des Graphen
 xlabel('Zeit in xx'); % Bezeichnung der x-Achse 
 ylabel('Spannung in mV'); % Bezeichnung der y-Achse

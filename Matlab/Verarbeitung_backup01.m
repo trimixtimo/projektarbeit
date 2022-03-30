@@ -8,12 +8,9 @@ voltage = decData * 0.80566;
 
 %Graphen plotten
 figure;
-x = voltage; %Zeitachse
-y = voltage; %mV
-plot(x,y);
-[rows, columns] = voltage;
+plot(voltage);
 title('Spannung über Zeit'); % Titel des Graphen
-xlabel('Zeit in xx'); % Bezeichnung der x-Achse 
-ylabel('Spannung in mV'); % Bezeichnung der y-Achse
+xlabel('Zeit in xx'); % Bezeichnung der 
+ylabel('Spannung in mV');
 
 fclose(FID); % geöffnete Datei in Matlab schließen
