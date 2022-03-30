@@ -43,6 +43,22 @@ void setup_vref(void)
 {
 	VREF_ADC0REF = VREF_ALWAYSON_bm | VREF_REFSEL_VREFA_gc;	//Referenzspannung immer an, externe Referenzspannung
 }
+void setup_adc(void)
+{
+	ADC0_CTRLA |= ADC_RUNSTBY_bm | ADC_FREERUN_bm;
+	ADC0_CTRLC |= ADC_PRESC_DIV256_gc;	//niedriger Takt für maximale Auflösung: 4 MHz / 256 = 15 kHz
+	ADC0_MUXPOS = 0x01; //für RAW-Input
+	//ADC0_MUXPOS = 0x02; //für HULL-Input
+	ADC0_DBGCTRL |= ADC_DBGRUN_bm;	//ADC debugging
+	ADC0_CTRLA |= ADC_ENABLE_bm;	//ADC einschalten
+	_delay_ms(1);
+	ADC0_COMMAND |= ADC_STCONV_bm;	//erste Messung starten
+}
+
+uint16_t adc_read(void)
+{
+	return ADC0_RES;
+}
 
 
 int main(void)
