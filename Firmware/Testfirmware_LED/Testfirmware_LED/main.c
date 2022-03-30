@@ -21,12 +21,7 @@
  * PD7 VSENSE
  */
 
-
-
-
 #define F_CPU 4000000UL	//Takt 4MHz
-
-
 
 #include <avr/io.h>
 #include <avr/delay.h>
@@ -39,7 +34,10 @@ int setup_cpu(void)
 }
 int setup_io(void)
 {
-	
+	PORTA_DIR = 01011001;	//SPI Interface Input/Output
+	PORTC_DIR = 00000000;
+	PORTD_DIR = 01100000;	//LED Outputs
+	PORTC_PIN0CTRL = 1 << 3;	//Pullup für Button
 }
 
 
@@ -48,6 +46,7 @@ int main(void)
     /* Replace with your application code */
     while (1) 
     {
+		
     }
 }
 
