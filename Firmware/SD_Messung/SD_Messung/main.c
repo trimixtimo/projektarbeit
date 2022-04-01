@@ -27,6 +27,7 @@
 #include <avr/io.h>
 #include <avr/delay.h>
 #include <avr/cpufunc.h>
+#include <avr/interrupt.h>
 
 void setup_io(void)
 {
@@ -41,16 +42,16 @@ void setup_vref(void)
 }
 void setup_adc(void)
 {
-	ADC0_CTRLA |= (ADC_RUNSTBY_bm | ADC_FREERUN_bm);	//Freerunning Modus, Single Ended 12bit, kein Leftadjust, Runstandby	
-	ADC0_CTRLC |= ADC_PRESC_DIV256_gc;	//niedriger Takt für maximale Auflösung: 4 MHz / 256 = 15 kHz ADC Takt
+	ADC0_CTRLA = (ADC_RUNSTBY_bm | ADC_FREERUN_bm);	//Freerunning Modus, Single Ended 12bit, kein Leftadjust, Runstandby	
+	ADC0_CTRLC = ADC_PRESC_DIV256_gc;	//niedriger Takt für maximale Auflösung: 4 MHz / 256 = 15 kHz ADC Takt
 	ADC0_MUXPOS = 0x01; //für RAW-Input
 	//ADC0_MUXPOS = 0x02; //für HULL-Input
 	ADC0_MUXNEG = 0x40; //Überflüssig weil Single Ended, zur Sicherheit
 	
-	ADC0_DBGCTRL |= ADC_DBGRUN_bm;	//ADC debugging
+	ADC0_DBGCTRL = ADC_DBGRUN_bm;	//ADC debugging
 	ADC0_CTRLA |= ADC_ENABLE_bm;	//ADC einschalten
 	_delay_ms(1);
-	ADC0_COMMAND |= ADC_STCONV_bm;	//erste Messung starten
+	ADC0_COMMAND = ADC_STCONV_bm;	//erste Messung starten
 }
 void setup_timer(void)
 {
@@ -61,6 +62,17 @@ void setup_timer(void)
 	
 	//TCA0_SINGLE_INTFLAGS = 1; muss in der ISR aufgerufen werden
 	
+}
+void timer_start(void)
+{
+	TCA0_SINGLE_CTRLA |= TCA_SINGLE_ENABLE_bm;	//Timer starten
+}
+void timer_stop(void)
+{
+	cli();	//Interrupts unterdrücken
+	TCA0_SINGLE_CTRLA &= ~TCA_SINGLE_ENABLE_bm;	//Timer stoppen
+	TCA0_SINGLE_CNT = 0x00;	//Timer zurücksetzen
+	sei();	//Interrupts wieder zulassen
 }
 uint16_t adc_read(void)
 {
@@ -77,25 +89,9 @@ int main(void)
 	
 	while(1)
 	{
-		if(!(PORTC_IN & 0x01))
-		{
-			PORTD_OUTSET = 0b00100000;
-			_delay_ms(500);
-			PORTD_OUTCLR = 0b00100000;
-			_delay_ms(500);
-			PORTD_OUTSET = 0b01000000;
-			_delay_ms(500);
-			PORTD_OUTCLR = 0b01000000;
-			_delay_ms(500);
-		}
-		else
-		{
-			PORTD_OUTSET = 0b00100000;
-			PORTD_OUTSET = 0b01000000;
-			_delay_ms(100);
-			PORTD_OUTCLR = 0b00100000;
-			PORTD_OUTCLR = 0b01000000;
-			_delay_ms(100);
-		}
+		timer_start();
+		_delay_ms(500);
+		timer_stop();
+		_delay_ms(500);
 	}
 }
