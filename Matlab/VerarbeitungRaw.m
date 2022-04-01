@@ -1,5 +1,5 @@
 %% Werte einlesen und umwandelen in Dezimal
-filename = 'Messung0-2-0-1-0.txt';      % Dateinamen als Variable definieren
+filename = 'Messung0-2-0-1-0_raw.txt';      % Dateinamen als Variable definieren
 FID = fopen(filename);                  % Datei in Matlab öffnen 
 dataFromfile = textscan(FID, '%s');     % Die Werte als String lesen für HEX Verarbeitung
 dataFromfile = dataFromfile{1};
@@ -7,7 +7,7 @@ decData = hex2dec(dataFromfile);        % Hexadezimal in Dezimal umwandeln
 voltage = decData * 0.80566; % [mV]
 
 %% Zeitkonstante definieren
-dt = 1 % [Millisekunden]                Zeitintervall zwischen zwei Messpunkten
+dt = 1 % [Millisekunden]                Zeitintervall zwischen zwei Messpunkten == 1000Hz
 
 %% Graphen plotten
 figure;                       
@@ -20,4 +20,5 @@ ylabel('Spannung in mV');               % Bezeichnung der y-Achse
 
 fclose(FID);                            % geöffnete Datei in Matlab schließen
 
-% Scheinbar Abtastrate 
+% Scheinbar Abtastrate von 100Hz und nicht 1000Hz, muss nochmal überprüft
+% werden, da Messung definitiv länger als 3 Sekunden war
