@@ -1,6 +1,6 @@
 %% Werte einlesen und umwandelen in Dezimal
 [file,path] = uigetfile({'*.txt'}, 'Textdatei mit Messung auswählen..','Messungen/'); % User wählt .txt aus
-FID = fopen(file, 'r');                  % Datei in Matlab öffnen 
+FID = fopen(file);                  % Datei in Matlab öffnen 
 dataFromfile = textscan(FID, '%s');     % Die Werte als String lesen für HEX Verarbeitung
 dataFromfile = dataFromfile{1};
 decData = hex2dec(dataFromfile);        % Hexadezimal in Dezimal umwandeln
