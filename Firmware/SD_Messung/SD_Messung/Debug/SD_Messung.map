@@ -2,6 +2,8 @@ Archive member included to satisfy reference by file (symbol)
 
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega4\libgcc.a(_exit.o)
                               C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/AVR-Dx_DFP/1.6.76/gcc/dev/avr128db28/avrxmega4/crtavr128db28.o (exit)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega4\libgcc.a(_clear_bss.o)
+                              main.o (__do_clear_bss)
 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/AVR-Dx_DFP/1.6.76/gcc/dev/avr128db28/avrxmega4\libavr128db28.a(ccp_write.o)
                               main.o (ccp_write_io)
 
@@ -14,8 +16,6 @@ Discarded input sections
  .bss           0x00000000        0x0 main.o
  .text.timer_stop
                 0x00000000       0x18 main.o
- .text.adc_read
-                0x00000000        0xa main.o
  .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega4\libgcc.a(_exit.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega4\libgcc.a(_exit.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega4\libgcc.a(_exit.o)
@@ -32,6 +32,22 @@ Discarded input sections
                 0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega4\libgcc.a(_exit.o)
  .text.libgcc.fixed
                 0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega4\libgcc.a(_exit.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega4\libgcc.a(_clear_bss.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega4\libgcc.a(_clear_bss.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega4\libgcc.a(_clear_bss.o)
+ .text.libgcc.mul
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega4\libgcc.a(_clear_bss.o)
+ .text.libgcc.div
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega4\libgcc.a(_clear_bss.o)
+ .text.libgcc   0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega4\libgcc.a(_clear_bss.o)
+ .text.libgcc.prologue
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega4\libgcc.a(_clear_bss.o)
+ .text.libgcc.builtins
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega4\libgcc.a(_clear_bss.o)
+ .text.libgcc.fmul
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega4\libgcc.a(_clear_bss.o)
+ .text.libgcc.fixed
+                0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega4\libgcc.a(_clear_bss.o)
  .text          0x00000000        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/AVR-Dx_DFP/1.6.76/gcc/dev/avr128db28/avrxmega4\libavr128db28.a(ccp_write.o)
  .data          0x00000000        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/AVR-Dx_DFP/1.6.76/gcc/dev/avr128db28/avrxmega4\libavr128db28.a(ccp_write.o)
  .bss           0x00000000        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/AVR-Dx_DFP/1.6.76/gcc/dev/avr128db28/avrxmega4\libavr128db28.a(ccp_write.o)
@@ -163,7 +179,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x1a8
+.text           0x00000000      0x20a
  *(.vectors)
  .vectors       0x00000000       0xa8 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/AVR-Dx_DFP/1.6.76/gcc/dev/avr128db28/avrxmega4/crtavr128db28.o
                 0x00000000                __vector_default
@@ -204,6 +220,8 @@ END GROUP
  *(.init3)
  *(.init3)
  *(.init4)
+ .init4         0x000000b4       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega4\libgcc.a(_clear_bss.o)
+                0x000000b4                __do_clear_bss
  *(.init4)
  *(.init5)
  *(.init5)
@@ -214,81 +232,87 @@ END GROUP
  *(.init8)
  *(.init8)
  *(.init9)
- .init9         0x000000b4        0x8 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/AVR-Dx_DFP/1.6.76/gcc/dev/avr128db28/avrxmega4/crtavr128db28.o
+ .init9         0x000000c4        0x8 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/AVR-Dx_DFP/1.6.76/gcc/dev/avr128db28/avrxmega4/crtavr128db28.o
  *(.init9)
  *(.text)
- .text          0x000000bc        0x4 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/AVR-Dx_DFP/1.6.76/gcc/dev/avr128db28/avrxmega4/crtavr128db28.o
-                0x000000bc                __vector_38
-                0x000000bc                __vector_22
-                0x000000bc                __vector_28
-                0x000000bc                __vector_1
-                0x000000bc                __vector_32
-                0x000000bc                __vector_34
-                0x000000bc                __vector_24
-                0x000000bc                __vector_12
-                0x000000bc                __bad_interrupt
-                0x000000bc                __vector_6
-                0x000000bc                __vector_31
-                0x000000bc                __vector_35
-                0x000000bc                __vector_39
-                0x000000bc                __vector_3
-                0x000000bc                __vector_23
-                0x000000bc                __vector_30
-                0x000000bc                __vector_25
-                0x000000bc                __vector_11
-                0x000000bc                __vector_13
-                0x000000bc                __vector_17
-                0x000000bc                __vector_19
-                0x000000bc                __vector_7
-                0x000000bc                __vector_41
-                0x000000bc                __vector_27
-                0x000000bc                __vector_5
-                0x000000bc                __vector_33
-                0x000000bc                __vector_37
-                0x000000bc                __vector_4
-                0x000000bc                __vector_2
-                0x000000bc                __vector_21
-                0x000000bc                __vector_15
-                0x000000bc                __vector_36
-                0x000000bc                __vector_29
-                0x000000bc                __vector_40
-                0x000000bc                __vector_8
-                0x000000bc                __vector_26
-                0x000000bc                __vector_14
-                0x000000bc                __vector_10
-                0x000000bc                __vector_16
-                0x000000bc                __vector_18
-                0x000000bc                __vector_20
-                0x000000c0                . = ALIGN (0x2)
+ .text          0x000000cc        0x4 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/AVR-Dx_DFP/1.6.76/gcc/dev/avr128db28/avrxmega4/crtavr128db28.o
+                0x000000cc                __vector_38
+                0x000000cc                __vector_22
+                0x000000cc                __vector_28
+                0x000000cc                __vector_1
+                0x000000cc                __vector_32
+                0x000000cc                __vector_34
+                0x000000cc                __vector_24
+                0x000000cc                __vector_12
+                0x000000cc                __bad_interrupt
+                0x000000cc                __vector_6
+                0x000000cc                __vector_31
+                0x000000cc                __vector_35
+                0x000000cc                __vector_39
+                0x000000cc                __vector_3
+                0x000000cc                __vector_23
+                0x000000cc                __vector_30
+                0x000000cc                __vector_25
+                0x000000cc                __vector_11
+                0x000000cc                __vector_13
+                0x000000cc                __vector_17
+                0x000000cc                __vector_19
+                0x000000cc                __vector_7
+                0x000000cc                __vector_41
+                0x000000cc                __vector_27
+                0x000000cc                __vector_5
+                0x000000cc                __vector_33
+                0x000000cc                __vector_37
+                0x000000cc                __vector_4
+                0x000000cc                __vector_2
+                0x000000cc                __vector_21
+                0x000000cc                __vector_15
+                0x000000cc                __vector_36
+                0x000000cc                __vector_29
+                0x000000cc                __vector_40
+                0x000000cc                __vector_8
+                0x000000cc                __vector_26
+                0x000000cc                __vector_14
+                0x000000cc                __vector_10
+                0x000000cc                __vector_16
+                0x000000cc                __vector_18
+                0x000000cc                __vector_20
+                0x000000d0                . = ALIGN (0x2)
  *(.text.*)
  .text.setup_io
-                0x000000c0       0x18 main.o
-                0x000000c0                setup_io
+                0x000000d0       0x18 main.o
+                0x000000d0                setup_io
  .text.setup_vref
-                0x000000d8        0x8 main.o
-                0x000000d8                setup_vref
+                0x000000e8        0x8 main.o
+                0x000000e8                setup_vref
  .text.setup_adc
-                0x000000e0       0x36 main.o
-                0x000000e0                setup_adc
+                0x000000f0       0x36 main.o
+                0x000000f0                setup_adc
  .text.setup_timer
-                0x00000116       0x1e main.o
-                0x00000116                setup_timer
+                0x00000126       0x1e main.o
+                0x00000126                setup_timer
  .text.timer_start
-                0x00000134        0xc main.o
-                0x00000134                timer_start
- .text.main     0x00000140       0x34 main.o
-                0x00000140                main
+                0x00000144        0xc main.o
+                0x00000144                timer_start
+ .text.timer_reset
+                0x00000150        0xa main.o
+                0x00000150                timer_reset
+ .text.adc_read
+                0x0000015a        0xa main.o
+                0x0000015a                adc_read
+ .text.main     0x00000164       0x34 main.o
+                0x00000164                main
  .text.__vector_9
-                0x00000174       0x24 main.o
-                0x00000174                __vector_9
+                0x00000198       0x62 main.o
+                0x00000198                __vector_9
  .text.avr-libc
-                0x00000198        0xc C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/AVR-Dx_DFP/1.6.76/gcc/dev/avr128db28/avrxmega4\libavr128db28.a(ccp_write.o)
-                0x00000198                ccp_write_io
-                0x000001a4                . = ALIGN (0x2)
+                0x000001fa        0xc C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/AVR-Dx_DFP/1.6.76/gcc/dev/avr128db28/avrxmega4\libavr128db28.a(ccp_write.o)
+                0x000001fa                ccp_write_io
+                0x00000206                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x000001a4        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega4\libgcc.a(_exit.o)
-                0x000001a4                _exit
-                0x000001a4                exit
+ .fini9         0x00000206        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega4\libgcc.a(_exit.o)
+                0x00000206                _exit
+                0x00000206                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -307,11 +331,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x000001a4        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega4\libgcc.a(_exit.o)
+ .fini0         0x00000206        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega4\libgcc.a(_exit.o)
  *(.fini0)
-                0x000001a8                _etext = .
+                0x0000020a                _etext = .
 
-.data           0x00804000        0x0 load address 0x000001a8
+.data           0x00804000        0x0 load address 0x0000020a
                 [!provide]                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -323,20 +347,22 @@ END GROUP
                 0x00804000                _edata = .
                 [!provide]                PROVIDE (__data_end, .)
 
-.bss            0x00804000        0x0
-                [!provide]                PROVIDE (__bss_start, .)
+.bss            0x00804000        0x2
+                0x00804000                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
+ .bss.messwert  0x00804000        0x2 main.o
+                0x00804000                messwert
  *(COMMON)
-                [!provide]                PROVIDE (__bss_end, .)
-                0x000001a8                __data_load_start = LOADADDR (.data)
-                0x000001a8                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00804002                PROVIDE (__bss_end, .)
+                0x0000020a                __data_load_start = LOADADDR (.data)
+                0x0000020a                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00804000        0x0
+.noinit         0x00804002        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x00804000                _end = .
+                0x00804002                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -401,47 +427,47 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000       0x80
+.debug_aranges  0x00000000       0x88
  *(.debug_aranges)
  .debug_aranges
-                0x00000000       0x60 main.o
+                0x00000000       0x68 main.o
  .debug_aranges
-                0x00000060       0x20 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/AVR-Dx_DFP/1.6.76/gcc/dev/avr128db28/avrxmega4\libavr128db28.a(ccp_write.o)
+                0x00000068       0x20 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/AVR-Dx_DFP/1.6.76/gcc/dev/avr128db28/avrxmega4\libavr128db28.a(ccp_write.o)
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x2980
+.debug_info     0x00000000     0x29c4
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000     0x2433 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/AVR-Dx_DFP/1.6.76/gcc/dev/avr128db28/avrxmega4/crtavr128db28.o
- .debug_info    0x00002433      0x4ae main.o
- .debug_info    0x000028e1       0x9f C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/AVR-Dx_DFP/1.6.76/gcc/dev/avr128db28/avrxmega4\libavr128db28.a(ccp_write.o)
+ .debug_info    0x00002433      0x4f2 main.o
+ .debug_info    0x00002925       0x9f C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/AVR-Dx_DFP/1.6.76/gcc/dev/avr128db28/avrxmega4\libavr128db28.a(ccp_write.o)
 
-.debug_abbrev   0x00000000     0x243e
+.debug_abbrev   0x00000000     0x2451
  *(.debug_abbrev)
  .debug_abbrev  0x00000000     0x2248 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/AVR-Dx_DFP/1.6.76/gcc/dev/avr128db28/avrxmega4/crtavr128db28.o
- .debug_abbrev  0x00002248      0x1e2 main.o
- .debug_abbrev  0x0000242a       0x14 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/AVR-Dx_DFP/1.6.76/gcc/dev/avr128db28/avrxmega4\libavr128db28.a(ccp_write.o)
+ .debug_abbrev  0x00002248      0x1f5 main.o
+ .debug_abbrev  0x0000243d       0x14 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/AVR-Dx_DFP/1.6.76/gcc/dev/avr128db28/avrxmega4\libavr128db28.a(ccp_write.o)
 
-.debug_line     0x00000000      0x52a
+.debug_line     0x00000000      0x547
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x193 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/AVR-Dx_DFP/1.6.76/gcc/dev/avr128db28/avrxmega4/crtavr128db28.o
- .debug_line    0x00000193      0x330 main.o
- .debug_line    0x000004c3       0x67 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/AVR-Dx_DFP/1.6.76/gcc/dev/avr128db28/avrxmega4\libavr128db28.a(ccp_write.o)
+ .debug_line    0x00000193      0x34d main.o
+ .debug_line    0x000004e0       0x67 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/AVR-Dx_DFP/1.6.76/gcc/dev/avr128db28/avrxmega4\libavr128db28.a(ccp_write.o)
 
-.debug_frame    0x00000000       0xb4
+.debug_frame    0x00000000       0xfc
  *(.debug_frame)
- .debug_frame   0x00000000       0xb4 main.o
+ .debug_frame   0x00000000       0xfc main.o
 
-.debug_str      0x00000000     0x1491
+.debug_str      0x00000000     0x14a6
  *(.debug_str)
  .debug_str     0x00000000     0x1011 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/AVR-Dx_DFP/1.6.76/gcc/dev/avr128db28/avrxmega4/crtavr128db28.o
- .debug_str     0x00001011      0x480 main.o
-                                0x4cb (size before relaxing)
+ .debug_str     0x00001011      0x495 main.o
+                                0x4e0 (size before relaxing)
 
-.debug_loc      0x00000000       0x82
+.debug_loc      0x00000000      0x111
  *(.debug_loc)
- .debug_loc     0x00000000       0x82 main.o
+ .debug_loc     0x00000000      0x111 main.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -461,9 +487,9 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000       0x50
+.debug_ranges   0x00000000       0x58
  *(.debug_ranges)
- .debug_ranges  0x00000000       0x50 main.o
+ .debug_ranges  0x00000000       0x58 main.o
 
 .debug_macro
  *(.debug_macro)

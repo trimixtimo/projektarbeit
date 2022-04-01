@@ -22,12 +22,14 @@
  */
 
 #define F_CPU 4000000UL	//Takt 4MHz
-#define periodendauer_us 1000UL	//Abtastrate ADC
+#define periodendauer_us 20000UL	//Abtastrate ADC
 
 #include <avr/io.h>
 #include <avr/delay.h>
 #include <avr/cpufunc.h>
 #include <avr/interrupt.h>
+
+volatile uint16_t messwert = 0;	//globale, nicht von Optimierung erfasste Variable
 
 void setup_io(void)
 {
@@ -72,6 +74,10 @@ void timer_stop(void)
 	TCA0_SINGLE_CNT = 0x00;	//Timer zurücksetzen
 	sei();	//Interrupts wieder zulassen
 }
+void timer_reset (void)
+{
+	TCA0_SINGLE_CNT = 0x00;	//Timer zurücksetzen
+}
 uint16_t adc_read(void)
 {
 	return ADC0_RES;
@@ -86,14 +92,23 @@ int main(void)
 	setup_timer();
 	timer_start();
 	sei();
+	
 	while(1)
 	{
-		_delay_ms(500);
+		if(!(PORTC_IN & 0x01))	//Schalter ein
+		{
+			
+		} 
+		else//Schalter aus
+		{
+			timer_stop()
+		}
 	}
 }
 
 ISR(TCA0_OVF_vect)
 {
-	TCA0_SINGLE_INTFLAGS = 1; //muss in der ISR aufgerufen werden
-	PORTD_OUTTGL = 0b01100000;
+	TCA0_SINGLE_INTFLAGS = 1; //Löscht das Interrupt-Flag
+	timer_reset();	//Timer wieder auf 0
+	messwert = adc_read();
 }
