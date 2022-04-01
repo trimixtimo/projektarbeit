@@ -26,13 +26,13 @@
 					<SourcePath></SourcePath>
 				</d4p1:anyType>
 				<d4p1:anyType i:type="FileInfo">
-					<AbsolutePath>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\AVR-Dx_DFP\1.6.76\include\avr\ioavr128da28.h</AbsolutePath>
+					<AbsolutePath>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\AVR-Dx_DFP\1.6.76\include\avr\ioavr128db28.h</AbsolutePath>
 					<Attribute></Attribute>
 					<Category>header</Category>
 					<Condition>C</Condition>
-					<FileContentHash>0urdchBOEvhWN4aBYBViAA==</FileContentHash>
+					<FileContentHash>UAYyWY8AXFW/CjFvOq8VPw==</FileContentHash>
 					<FileVersion></FileVersion>
-					<Name>include/avr/ioavr128da28.h</Name>
+					<Name>include/avr/ioavr128db28.h</Name>
 					<SelectString></SelectString>
 					<SourcePath></SourcePath>
 				</d4p1:anyType>
@@ -41,7 +41,7 @@
 					<Attribute>template</Attribute>
 					<Category>source</Category>
 					<Condition>C Exe</Condition>
-					<FileContentHash>S/ECIsE4oSDQ7RtgpStjWw==</FileContentHash>
+					<FileContentHash>KjvOcFWd++tbnsEMfVPd/w==</FileContentHash>
 					<FileVersion></FileVersion>
 					<Name>templates/main.c</Name>
 					<SelectString>Main file (.c)</SelectString>
@@ -59,13 +59,13 @@
 					<SourcePath></SourcePath>
 				</d4p1:anyType>
 				<d4p1:anyType i:type="FileInfo">
-					<AbsolutePath>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\AVR-Dx_DFP\1.6.76\gcc\dev\avr128da28</AbsolutePath>
+					<AbsolutePath>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\AVR-Dx_DFP\1.6.76\gcc\dev\avr128db28</AbsolutePath>
 					<Attribute></Attribute>
 					<Category>libraryPrefix</Category>
 					<Condition>GCC</Condition>
 					<FileContentHash i:nil="true" />
 					<FileVersion></FileVersion>
-					<Name>gcc/dev/avr128da28</Name>
+					<Name>gcc/dev/avr128db28</Name>
 					<SelectString></SelectString>
 					<SourcePath></SourcePath>
 				</d4p1:anyType>
@@ -74,7 +74,7 @@
 			<PackPath>C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/AVR-Dx_DFP/1.6.76/Atmel.AVR-Dx_DFP.pdsc</PackPath>
 			<PackVersion>1.6.76</PackVersion>
 			<PresentInProject>true</PresentInProject>
-			<ReferenceConditionId>AVR128DA28</ReferenceConditionId>
+			<ReferenceConditionId>AVR128DB28</ReferenceConditionId>
 			<RteComponents xmlns:d4p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
 				<d4p1:string></d4p1:string>
 			</RteComponents>

@@ -26,19 +26,14 @@
 
 #include <avr/io.h>
 #include <avr/delay.h>
+#include <avr/cpufunc.h>
 
-void setup_cpu(void)
-{
-	CCP = CCP_IOREG_gc;	//Schreibschutz aufheben
-	CLKCTRL_MCLKCTRLA = 0b00000000;	//Disable Clock-Out, interne Clock
-	CLKCTRL_MCLKCTRLB |= (0x8 <<1) | (0x01);	//Prescaler 6x, Prescaler an -> 4MHz CLK Main
-}
 void setup_io(void)
 {
-	PORTA_DIR |= 0b01011001;	//SPI Interface Input/Output
-	PORTC_DIR |= 0b00000000;
-	PORTD_DIR |= 0b01100000;	//LED Outputs
-	PORTC_PIN0CTRL |= (1 << 3);	//Pullup für Button
+	PORTA_DIR = 0b01011001;	//SPI Interface Input/Output
+	PORTC_DIR = 0b00000000;
+	PORTD_DIR = 0b01100000;	//LED Outputs
+	PORTC_PIN0CTRL = (1 << 3);	//Pullup für Button
 }
 void setup_vref(void)
 {
@@ -72,19 +67,31 @@ uint16_t adc_read(void)
 
 int main(void)
 {
-	void setup_cpu();
-	void setup_io();
+	ccp_write_io((void *) & (CLKCTRL.OSCHFCTRLA), (0b10001101)); //HF Clock Runstandby, 4 MHz CLK_Main, Autotune
+	setup_io();
 	
-    while (1) 
-    {
-		PORTD_OUTSET = 0b00100000;
-		_delay_ms(500);
-		PORTD_OUTCLR = 0b00100000;
-		_delay_ms(500);
-		PORTD_OUTSET = 0b01000000;
-		_delay_ms(500);
-		PORTD_OUTCLR = 0b01000000;
-		_delay_ms(500);
-    }
+	while(1)
+	{	
+		if(!(PORTC_IN & 0x01))
+		{
+			PORTD_OUTSET = 0b00100000;
+			_delay_ms(500);
+			PORTD_OUTCLR = 0b00100000;
+			_delay_ms(500);
+			PORTD_OUTSET = 0b01000000;
+			_delay_ms(500);
+			PORTD_OUTCLR = 0b01000000;
+			_delay_ms(500);
+		}
+		else
+		{
+			PORTD_OUTSET = 0b00100000;
+			PORTD_OUTSET = 0b01000000;
+			_delay_ms(100);
+			PORTD_OUTCLR = 0b00100000;
+			PORTD_OUTCLR = 0b01000000;
+			_delay_ms(100);
+		}
+	}
 }
 
