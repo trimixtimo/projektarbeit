@@ -25,11 +25,14 @@
 #define periodendauer_us 20000UL	//Abtastrate ADC
 
 #include <avr/io.h>
-#include <avr/delay.h>
+#include <util/delay.h>
 #include <avr/cpufunc.h>
 #include <avr/interrupt.h>
+#include <stdbool.h>
 
 volatile uint16_t messwert = 0;	//globale, nicht von Optimierung erfasste Variable
+bool neuer_messwert = 0;	//ungespeicherter Messwert vorhanden
+bool messung_laeuft = 0;		//laufende Messung
 
 void setup_io(void)
 {
@@ -82,6 +85,13 @@ uint16_t adc_read(void)
 {
 	return ADC0_RES;
 }
+void wert_speichern(uint16_t wert)
+{
+	//Datei öffnen
+	//Wert konvertieren
+	//Wert anhängen
+	//Datei schließen
+}
 
 int main(void)
 {
@@ -97,11 +107,21 @@ int main(void)
 	{
 		if(!(PORTC_IN & 0x01))	//Schalter ein
 		{
-			
+			if (messung_laeuft)	//Messung läuft bereits
+			{
+				if (neuer_messwert)	//Neuer Messwert vorhanden
+				{
+					wert_speichern(messwert);
+				}
+			} 
+			else //Messung läuft noch nicht
+			{
+				timer_start();	//Messung starten
+			}
 		} 
 		else//Schalter aus
 		{
-			timer_stop()
+			timer_stop();	//Messung stoppen
 		}
 	}
 }
