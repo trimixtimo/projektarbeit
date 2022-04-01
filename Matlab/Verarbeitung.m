@@ -1,5 +1,5 @@
 %% Werte einlesen und umwandelen in Dezimal
-filename = 'Messung0-2-0-1-0.txt';      % Dateinamen als Variable definieren
+filename = 'Messung_Meenu_0-2-0-1-0.txt';      % Dateinamen als Variable definieren
 FID = fopen(filename);                  % Datei in Matlab öffnen 
 dataFromfile = textscan(FID, '%s');     % Die Werte als String lesen für HEX Verarbeitung
 dataFromfile = dataFromfile{1};
@@ -7,7 +7,7 @@ decData = hex2dec(dataFromfile);        % Hexadezimal in Dezimal umwandeln
 voltage = decData * 0.80566; % [mV]
 
 %% Zeitkonstante definieren
-dt = 1 % [Millisekunden]                Zeitintervall zwischen zwei Messpunkten == 1000Hz
+dt = 1; % [Millisekunden]                Zeitintervall zwischen zwei Messpunkten == 1000Hz
 
 %% Graphen plotten
 figure;                       
