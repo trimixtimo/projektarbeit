@@ -26,14 +26,15 @@ int sensorValue = 0;        // value read from the pot
 
 void setup() {
   // initialize serial communications at 9600 bps:
-  Serial.begin(56000);
+  Serial.begin(57600);
   pinMode(LED_BUILTIN, OUTPUT);
 }
 
 void loop() {
   sensorValue = analogRead(analogInPin);
-  Serial.println(sensorValue);
-  delayMicroseconds(500);
+  sensorValue = sensorValue * 4;
+  Serial.println(sensorValue, HEX);
+  delayMicroseconds(620);
   digitalWrite(LED_BUILTIN, 1);
   delayMicroseconds(200);
   digitalWrite(LED_BUILTIN, 0);
