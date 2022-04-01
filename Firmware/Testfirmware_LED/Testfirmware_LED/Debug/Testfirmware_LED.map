@@ -12,14 +12,6 @@ Discarded input sections
  .text          0x00000000        0x0 main.o
  .data          0x00000000        0x0 main.o
  .bss           0x00000000        0x0 main.o
- .text.setup_vref
-                0x00000000        0x8 main.o
- .text.setup_adc
-                0x00000000       0x42 main.o
- .text.setup_timer
-                0x00000000       0x1e main.o
- .text.adc_read
-                0x00000000        0xa main.o
  .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega4\libgcc.a(_exit.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega4\libgcc.a(_exit.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega4\libgcc.a(_exit.o)
@@ -391,47 +383,47 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000       0x68
+.debug_aranges  0x00000000       0x48
  *(.debug_aranges)
  .debug_aranges
-                0x00000000       0x48 main.o
+                0x00000000       0x28 main.o
  .debug_aranges
-                0x00000048       0x20 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/AVR-Dx_DFP/1.6.76/gcc/dev/avr128db28/avrxmega4\libavr128db28.a(ccp_write.o)
+                0x00000028       0x20 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/AVR-Dx_DFP/1.6.76/gcc/dev/avr128db28/avrxmega4\libavr128db28.a(ccp_write.o)
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x2a37
+.debug_info     0x00000000     0x28fa
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000     0x2433 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/AVR-Dx_DFP/1.6.76/gcc/dev/avr128db28/avrxmega4/crtavr128db28.o
- .debug_info    0x00002433      0x565 main.o
- .debug_info    0x00002998       0x9f C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/AVR-Dx_DFP/1.6.76/gcc/dev/avr128db28/avrxmega4\libavr128db28.a(ccp_write.o)
+ .debug_info    0x00002433      0x428 main.o
+ .debug_info    0x0000285b       0x9f C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/AVR-Dx_DFP/1.6.76/gcc/dev/avr128db28/avrxmega4\libavr128db28.a(ccp_write.o)
 
-.debug_abbrev   0x00000000     0x2426
+.debug_abbrev   0x00000000     0x23c9
  *(.debug_abbrev)
  .debug_abbrev  0x00000000     0x2248 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/AVR-Dx_DFP/1.6.76/gcc/dev/avr128db28/avrxmega4/crtavr128db28.o
- .debug_abbrev  0x00002248      0x1ca main.o
- .debug_abbrev  0x00002412       0x14 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/AVR-Dx_DFP/1.6.76/gcc/dev/avr128db28/avrxmega4\libavr128db28.a(ccp_write.o)
+ .debug_abbrev  0x00002248      0x16d main.o
+ .debug_abbrev  0x000023b5       0x14 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/AVR-Dx_DFP/1.6.76/gcc/dev/avr128db28/avrxmega4\libavr128db28.a(ccp_write.o)
 
-.debug_line     0x00000000      0x510
+.debug_line     0x00000000      0x475
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x193 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/AVR-Dx_DFP/1.6.76/gcc/dev/avr128db28/avrxmega4/crtavr128db28.o
- .debug_line    0x00000193      0x316 main.o
- .debug_line    0x000004a9       0x67 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/AVR-Dx_DFP/1.6.76/gcc/dev/avr128db28/avrxmega4\libavr128db28.a(ccp_write.o)
+ .debug_line    0x00000193      0x27b main.o
+ .debug_line    0x0000040e       0x67 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/AVR-Dx_DFP/1.6.76/gcc/dev/avr128db28/avrxmega4\libavr128db28.a(ccp_write.o)
 
-.debug_frame    0x00000000       0x74
+.debug_frame    0x00000000       0x34
  *(.debug_frame)
- .debug_frame   0x00000000       0x74 main.o
+ .debug_frame   0x00000000       0x34 main.o
 
-.debug_str      0x00000000     0x147b
+.debug_str      0x00000000     0x12a3
  *(.debug_str)
  .debug_str     0x00000000     0x1011 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/AVR-Dx_DFP/1.6.76/gcc/dev/avr128db28/avrxmega4/crtavr128db28.o
- .debug_str     0x00001011      0x46a main.o
-                                0x4b5 (size before relaxing)
+ .debug_str     0x00001011      0x292 main.o
+                                0x2dd (size before relaxing)
 
-.debug_loc      0x00000000      0x1ae
+.debug_loc      0x00000000      0x168
  *(.debug_loc)
- .debug_loc     0x00000000      0x1ae main.o
+ .debug_loc     0x00000000      0x168 main.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -451,9 +443,9 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000       0x38
+.debug_ranges   0x00000000       0x18
  *(.debug_ranges)
- .debug_ranges  0x00000000       0x38 main.o
+ .debug_ranges  0x00000000       0x18 main.o
 
 .debug_macro
  *(.debug_macro)
