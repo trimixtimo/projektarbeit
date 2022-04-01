@@ -58,11 +58,9 @@ void setup_timer(void)
 	TCA0_SINGLE_PER = periodendauer_us;
 	TCA0_SINGLE_CTRLA = (TCA_SINGLE_RUNSTDBY_bm | (0x02 << 1) | TCA_SINGLE_ENABLE_bm);	//Prescaler 4: 4 MHz / 4 = 1 MHz
 	TCA0_SINGLE_DBGCTRL = 0x01;	//debugging
-	TCA0_SINGLE_INTCTRL = TCA_SINGLE_OVF_bm;	//Überlauf-Interrupt aktiviert
-	
-	//TCA0_SINGLE_INTFLAGS = 1; muss in der ISR aufgerufen werden
-	
+	TCA0_SINGLE_INTCTRL = TCA_SINGLE_OVF_bm;	//Überlauf-Interrupt aktiviert	
 }
+
 void timer_start(void)
 {
 	TCA0_SINGLE_CTRLA |= TCA_SINGLE_ENABLE_bm;	//Timer starten
@@ -86,12 +84,16 @@ int main(void)
 	setup_vref();
 	setup_adc();
 	setup_timer();
-	
+	timer_start();
+	sei();
 	while(1)
 	{
-		timer_start();
-		_delay_ms(500);
-		timer_stop();
 		_delay_ms(500);
 	}
+}
+
+ISR(TCA0_OVF_vect)
+{
+	TCA0_SINGLE_INTFLAGS = 1; //muss in der ISR aufgerufen werden
+	PORTD_OUTTGL = 0b01100000;
 }
