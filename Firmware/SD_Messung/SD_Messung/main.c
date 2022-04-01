@@ -31,20 +31,22 @@
 void setup_io(void)
 {
 	PORTA_DIR = 0b01011001;	//SPI Interface Input/Output
-	PORTC_DIR = 0b00000000;
-	PORTD_DIR = 0b01100000;	//LED Outputs
-	PORTC_PIN0CTRL = (1 << 3);	//Pullup für Button
+	PORTC_DIR = 0b00000000;	//Alles Eingänge, Button an C0
+	PORTD_DIR = 0b01100000;	//LED Outputs 5,6
+	PORTC_PIN0CTRL = (1 << 3);	//Pullup für Button an C0
 }
 void setup_vref(void)
 {
-	VREF_ADC0REF = VREF_ALWAYSON_bm | VREF_REFSEL_VREFA_gc;	//Referenzspannung immer an, externe Referenzspannung
+	VREF_ADC0REF = VREF_ALWAYSON_bm | VREF_REFSEL_VREFA_gc;	//Referenzspannung immer an, externe Referenzspannung VREFA
 }
 void setup_adc(void)
 {
-	ADC0_CTRLA |= (ADC_RUNSTBY_bm | ADC_FREERUN_bm);
-	ADC0_CTRLC |= ADC_PRESC_DIV256_gc;	//niedriger Takt für maximale Auflösung: 4 MHz / 256 = 15 kHz
+	ADC0_CTRLA |= (ADC_RUNSTBY_bm | ADC_FREERUN_bm);	//Freerunning Modus, Single Ended 12bit, kein Leftadjust, Runstandby	
+	ADC0_CTRLC |= ADC_PRESC_DIV256_gc;	//niedriger Takt für maximale Auflösung: 4 MHz / 256 = 15 kHz ADC Takt
 	ADC0_MUXPOS = 0x01; //für RAW-Input
 	//ADC0_MUXPOS = 0x02; //für HULL-Input
+	ADC0_MUXNEG = 0x40; //Überflüssig weil Single Ended, zur Sicherheit
+	
 	ADC0_DBGCTRL |= ADC_DBGRUN_bm;	//ADC debugging
 	ADC0_CTRLA |= ADC_ENABLE_bm;	//ADC einschalten
 	_delay_ms(1);
@@ -69,6 +71,9 @@ int main(void)
 {
 	ccp_write_io((void *) & (CLKCTRL.OSCHFCTRLA), (0b10001101)); //HF Clock Runstandby, 4 MHz CLK_Main, Autotune
 	setup_io();
+	setup_vref();
+	setup_adc();
+	setup_timer();
 	
 	while(1)
 	{
