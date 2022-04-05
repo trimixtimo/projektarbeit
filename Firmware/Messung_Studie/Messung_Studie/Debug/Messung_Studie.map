@@ -14,6 +14,8 @@ Discarded input sections
  .text          0x00000000        0x0 main.o
  .data          0x00000000        0x0 main.o
  .bss           0x00000000        0x0 main.o
+ .text.setup_uart
+                0x00000000       0x1a main.o
  .text.wert_speichern
                 0x00000000        0x2 main.o
  .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega4\libgcc.a(_exit.o)
@@ -436,43 +438,43 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000       0x90
+.debug_aranges  0x00000000       0x98
  *(.debug_aranges)
  .debug_aranges
-                0x00000000       0x70 main.o
+                0x00000000       0x78 main.o
  .debug_aranges
-                0x00000070       0x20 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/AVR-Dx_DFP/1.6.76/gcc/dev/avr128db28/avrxmega4\libavr128db28.a(ccp_write.o)
+                0x00000078       0x20 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/AVR-Dx_DFP/1.6.76/gcc/dev/avr128db28/avrxmega4\libavr128db28.a(ccp_write.o)
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x29f3
+.debug_info     0x00000000     0x2c02
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000     0x2433 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/AVR-Dx_DFP/1.6.76/gcc/dev/avr128db28/avrxmega4/crtavr128db28.o
- .debug_info    0x00002433      0x521 main.o
- .debug_info    0x00002954       0x9f C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/AVR-Dx_DFP/1.6.76/gcc/dev/avr128db28/avrxmega4\libavr128db28.a(ccp_write.o)
+ .debug_info    0x00002433      0x730 main.o
+ .debug_info    0x00002b63       0x9f C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/AVR-Dx_DFP/1.6.76/gcc/dev/avr128db28/avrxmega4\libavr128db28.a(ccp_write.o)
 
-.debug_abbrev   0x00000000     0x2434
+.debug_abbrev   0x00000000     0x246b
  *(.debug_abbrev)
  .debug_abbrev  0x00000000     0x2248 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/AVR-Dx_DFP/1.6.76/gcc/dev/avr128db28/avrxmega4/crtavr128db28.o
- .debug_abbrev  0x00002248      0x1d8 main.o
- .debug_abbrev  0x00002420       0x14 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/AVR-Dx_DFP/1.6.76/gcc/dev/avr128db28/avrxmega4\libavr128db28.a(ccp_write.o)
+ .debug_abbrev  0x00002248      0x20f main.o
+ .debug_abbrev  0x00002457       0x14 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/AVR-Dx_DFP/1.6.76/gcc/dev/avr128db28/avrxmega4\libavr128db28.a(ccp_write.o)
 
-.debug_line     0x00000000      0x56f
+.debug_line     0x00000000      0x598
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x193 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/AVR-Dx_DFP/1.6.76/gcc/dev/avr128db28/avrxmega4/crtavr128db28.o
- .debug_line    0x00000193      0x375 main.o
- .debug_line    0x00000508       0x67 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/AVR-Dx_DFP/1.6.76/gcc/dev/avr128db28/avrxmega4\libavr128db28.a(ccp_write.o)
+ .debug_line    0x00000193      0x39e main.o
+ .debug_line    0x00000531       0x67 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/AVR-Dx_DFP/1.6.76/gcc/dev/avr128db28/avrxmega4\libavr128db28.a(ccp_write.o)
 
-.debug_frame    0x00000000      0x10c
+.debug_frame    0x00000000      0x11c
  *(.debug_frame)
- .debug_frame   0x00000000      0x10c main.o
+ .debug_frame   0x00000000      0x11c main.o
 
-.debug_str      0x00000000     0x14d8
+.debug_str      0x00000000     0x16ec
  *(.debug_str)
  .debug_str     0x00000000     0x1011 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/AVR-Dx_DFP/1.6.76/gcc/dev/avr128db28/avrxmega4/crtavr128db28.o
- .debug_str     0x00001011      0x4c7 main.o
-                                0x520 (size before relaxing)
+ .debug_str     0x00001011      0x6db main.o
+                                0x74d (size before relaxing)
 
 .debug_loc      0x00000000      0x111
  *(.debug_loc)
@@ -496,9 +498,9 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000       0x60
+.debug_ranges   0x00000000       0x68
  *(.debug_ranges)
- .debug_ranges  0x00000000       0x60 main.o
+ .debug_ranges  0x00000000       0x68 main.o
 
 .debug_macro
  *(.debug_macro)

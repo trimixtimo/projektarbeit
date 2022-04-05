@@ -13,21 +13,21 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000002e0  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 00000090  00000000  00000000  00000320  2**3
+  5 .debug_aranges 00000098  00000000  00000000  00000320  2**3
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   000029f3  00000000  00000000  000003b0  2**0
+  6 .debug_info   00002c02  00000000  00000000  000003b8  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00002434  00000000  00000000  00002da3  2**0
+  7 .debug_abbrev 0000246b  00000000  00000000  00002fba  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   0000056f  00000000  00000000  000051d7  2**0
+  8 .debug_line   00000598  00000000  00000000  00005425  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  0000010c  00000000  00000000  00005748  2**2
+  9 .debug_frame  0000011c  00000000  00000000  000059c0  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    000014d8  00000000  00000000  00005854  2**0
+ 10 .debug_str    000016ec  00000000  00000000  00005adc  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00000111  00000000  00000000  00006d2c  2**0
+ 11 .debug_loc    00000111  00000000  00000000  000071c8  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000060  00000000  00000000  00006e3d  2**0
+ 12 .debug_ranges 00000068  00000000  00000000  000072d9  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -149,8 +149,8 @@ void wert_speichern(uint16_t wert)
  124:	08 95       	ret
 
 00000126 <setup_timer>:
- 126:	80 e2       	ldi	r24, 0x20	; 32
- 128:	9e e4       	ldi	r25, 0x4E	; 78
+ 126:	88 ee       	ldi	r24, 0xE8	; 232
+ 128:	93 e0       	ldi	r25, 0x03	; 3
  12a:	80 93 26 0a 	sts	0x0A26, r24	; 0x800a26 <__TEXT_REGION_LENGTH__+0x7e0a26>
  12e:	90 93 27 0a 	sts	0x0A27, r25	; 0x800a27 <__TEXT_REGION_LENGTH__+0x7e0a27>
  132:	85 e8       	ldi	r24, 0x85	; 133
@@ -196,7 +196,7 @@ void wert_speichern(uint16_t wert)
 
 int main(void)
 {
-	ccp_write_io((void *) & (CLKCTRL.OSCHFCTRLA), (0b10001101)); //HF Clock Runstandby, 4 MHz CLK_Main, Autotune
+	ccp_write_io((void *) & (CLKCTRL.OSCHFCTRLA), (0b10001101)); //HF Clock Runstandby, 4 MHz CLK_Main, Autotune, CLK_PER = CLK_Main
  17c:	6d e8       	ldi	r22, 0x8D	; 141
  17e:	88 e6       	ldi	r24, 0x68	; 104
  180:	90 e0       	ldi	r25, 0x00	; 0

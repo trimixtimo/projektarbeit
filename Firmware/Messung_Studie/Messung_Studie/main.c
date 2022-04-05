@@ -22,7 +22,9 @@
  */
 
 #define F_CPU 4000000UL	//Takt 4MHz
-#define periodendauer_us 20000UL	//Abtastrate ADC
+#define periodendauer_us 1000UL	//Abtastrate ADC
+#define baudrate_reg(baudrate) ((float)(F_CPU * 64 / (16 * (float)baudrate)))
+#define baudrate 57600
 
 #include <avr/io.h>
 #include <util/delay.h>
@@ -65,6 +67,14 @@ void setup_timer(void)
 	TCA0_SINGLE_DBGCTRL = 0x01;	//debugging
 	TCA0_SINGLE_INTCTRL = TCA_SINGLE_OVF_bm;	//Überlauf-Interrupt aktiviert	
 }
+void setup_uart(void)
+{
+	USART0.BAUD = (uint16_t) baudrate_reg(baudrate);	//set Baud rate for FME
+	USART0.CTRLC = USART_CMODE_ASYNCHRONOUS_gc | USART_PMODE_DISABLED_gc | USART_SBMODE_1BIT_gc | USART_CHSIZE_8BIT_gc;	//asynchron | no parity | 1 stop bit | 8 data bits
+	//USART0.CTRLA = USART_RXCIE_bm;	//enable receive interrupt
+	USART0.DBGCTRL = USART_DBGRUN_bm;	//debugging mode
+	USART0.CTRLB = USART_RXEN_bm |USART_TXEN_bm;	//uart rx und tx aktivieren
+}
 
 void timer_start(void)
 {
@@ -95,7 +105,7 @@ void wert_speichern(uint16_t wert)
 
 int main(void)
 {
-	ccp_write_io((void *) & (CLKCTRL.OSCHFCTRLA), (0b10001101)); //HF Clock Runstandby, 4 MHz CLK_Main, Autotune
+	ccp_write_io((void *) & (CLKCTRL.OSCHFCTRLA), (0b10001101)); //HF Clock Runstandby, 4 MHz CLK_Main, Autotune, CLK_PER = CLK_Main
 	setup_io();
 	setup_vref();
 	setup_adc();
