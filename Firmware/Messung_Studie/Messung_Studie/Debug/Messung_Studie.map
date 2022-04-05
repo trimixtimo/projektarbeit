@@ -468,11 +468,11 @@ END GROUP
  *(.debug_frame)
  .debug_frame   0x00000000      0x10c main.o
 
-.debug_str      0x00000000     0x14d0
+.debug_str      0x00000000     0x14d8
  *(.debug_str)
  .debug_str     0x00000000     0x1011 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/AVR-Dx_DFP/1.6.76/gcc/dev/avr128db28/avrxmega4/crtavr128db28.o
- .debug_str     0x00001011      0x4bf main.o
-                                0x518 (size before relaxing)
+ .debug_str     0x00001011      0x4c7 main.o
+                                0x520 (size before relaxing)
 
 .debug_loc      0x00000000      0x111
  *(.debug_loc)
@@ -502,5 +502,5 @@ END GROUP
 
 .debug_macro
  *(.debug_macro)
-OUTPUT(SD_Messung.elf elf32-avr)
+OUTPUT(Messung_Studie.elf elf32-avr)
 LOAD linker stubs

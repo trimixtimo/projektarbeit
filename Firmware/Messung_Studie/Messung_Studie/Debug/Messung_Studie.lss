@@ -1,5 +1,5 @@
 
-SD_Messung.elf:     file format elf32-avr
+Messung_Studie.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
@@ -23,11 +23,11 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
   9 .debug_frame  0000010c  00000000  00000000  00005748  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    000014d0  00000000  00000000  00005854  2**0
+ 10 .debug_str    000014d8  00000000  00000000  00005854  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00000111  00000000  00000000  00006d24  2**0
+ 11 .debug_loc    00000111  00000000  00000000  00006d2c  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000060  00000000  00000000  00006e35  2**0
+ 12 .debug_ranges 00000060  00000000  00000000  00006e3d  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
