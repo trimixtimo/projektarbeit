@@ -6,6 +6,7 @@
  */ 
 
 #include <avr/io.h>
+#include "ff.h"		/* Declarations of FatFs API */
 
 
 int main(void)

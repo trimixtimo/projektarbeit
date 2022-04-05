@@ -3,73 +3,73 @@ SD Spielwiese.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000000  00804000  00804000  00000116  2**0
+  0 .data         00000000  00804000  00804000  00000140  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         000000c2  00000000  00000000  00000054  2**1
+  1 .text         000000ec  00000000  00000000  00000054  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .comment      00000030  00000000  00000000  00000116  2**0
+  2 .comment      00000030  00000000  00000000  00000140  2**0
                   CONTENTS, READONLY
-  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000148  2**2
+  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000170  2**2
                   CONTENTS, READONLY
-  4 .debug_aranges 00000020  00000000  00000000  00000188  2**0
+  4 .debug_aranges 00000020  00000000  00000000  000001b0  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   00002290  00000000  00000000  000001a8  2**0
+  5 .debug_info   00002297  00000000  00000000  000001d0  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 00002087  00000000  00000000  00002438  2**0
+  6 .debug_abbrev 00002087  00000000  00000000  00002467  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   000001c6  00000000  00000000  000044bf  2**0
+  7 .debug_line   000001c6  00000000  00000000  000044ee  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  00000024  00000000  00000000  00004688  2**2
+  8 .debug_frame  00000024  00000000  00000000  000046b4  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    0000101d  00000000  00000000  000046ac  2**0
+  9 .debug_str    0000101d  00000000  00000000  000046d8  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_ranges 00000010  00000000  00000000  000056c9  2**0
+ 10 .debug_ranges 00000010  00000000  00000000  000056f5  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
 
 00000000 <__vectors>:
    0:	0c 94 52 00 	jmp	0xa4	; 0xa4 <__ctors_end>
-   4:	0c 94 5c 00 	jmp	0xb8	; 0xb8 <__bad_interrupt>
-   8:	0c 94 5c 00 	jmp	0xb8	; 0xb8 <__bad_interrupt>
-   c:	0c 94 5c 00 	jmp	0xb8	; 0xb8 <__bad_interrupt>
-  10:	0c 94 5c 00 	jmp	0xb8	; 0xb8 <__bad_interrupt>
-  14:	0c 94 5c 00 	jmp	0xb8	; 0xb8 <__bad_interrupt>
-  18:	0c 94 5c 00 	jmp	0xb8	; 0xb8 <__bad_interrupt>
-  1c:	0c 94 5c 00 	jmp	0xb8	; 0xb8 <__bad_interrupt>
-  20:	0c 94 5c 00 	jmp	0xb8	; 0xb8 <__bad_interrupt>
-  24:	0c 94 5c 00 	jmp	0xb8	; 0xb8 <__bad_interrupt>
-  28:	0c 94 5c 00 	jmp	0xb8	; 0xb8 <__bad_interrupt>
-  2c:	0c 94 5c 00 	jmp	0xb8	; 0xb8 <__bad_interrupt>
-  30:	0c 94 5c 00 	jmp	0xb8	; 0xb8 <__bad_interrupt>
-  34:	0c 94 5c 00 	jmp	0xb8	; 0xb8 <__bad_interrupt>
-  38:	0c 94 5c 00 	jmp	0xb8	; 0xb8 <__bad_interrupt>
-  3c:	0c 94 5c 00 	jmp	0xb8	; 0xb8 <__bad_interrupt>
-  40:	0c 94 5c 00 	jmp	0xb8	; 0xb8 <__bad_interrupt>
-  44:	0c 94 5c 00 	jmp	0xb8	; 0xb8 <__bad_interrupt>
-  48:	0c 94 5c 00 	jmp	0xb8	; 0xb8 <__bad_interrupt>
-  4c:	0c 94 5c 00 	jmp	0xb8	; 0xb8 <__bad_interrupt>
-  50:	0c 94 5c 00 	jmp	0xb8	; 0xb8 <__bad_interrupt>
-  54:	0c 94 5c 00 	jmp	0xb8	; 0xb8 <__bad_interrupt>
-  58:	0c 94 5c 00 	jmp	0xb8	; 0xb8 <__bad_interrupt>
-  5c:	0c 94 5c 00 	jmp	0xb8	; 0xb8 <__bad_interrupt>
-  60:	0c 94 5c 00 	jmp	0xb8	; 0xb8 <__bad_interrupt>
-  64:	0c 94 5c 00 	jmp	0xb8	; 0xb8 <__bad_interrupt>
-  68:	0c 94 5c 00 	jmp	0xb8	; 0xb8 <__bad_interrupt>
-  6c:	0c 94 5c 00 	jmp	0xb8	; 0xb8 <__bad_interrupt>
-  70:	0c 94 5c 00 	jmp	0xb8	; 0xb8 <__bad_interrupt>
-  74:	0c 94 5c 00 	jmp	0xb8	; 0xb8 <__bad_interrupt>
-  78:	0c 94 5c 00 	jmp	0xb8	; 0xb8 <__bad_interrupt>
-  7c:	0c 94 5c 00 	jmp	0xb8	; 0xb8 <__bad_interrupt>
-  80:	0c 94 5c 00 	jmp	0xb8	; 0xb8 <__bad_interrupt>
-  84:	0c 94 5c 00 	jmp	0xb8	; 0xb8 <__bad_interrupt>
-  88:	0c 94 5c 00 	jmp	0xb8	; 0xb8 <__bad_interrupt>
-  8c:	0c 94 5c 00 	jmp	0xb8	; 0xb8 <__bad_interrupt>
-  90:	0c 94 5c 00 	jmp	0xb8	; 0xb8 <__bad_interrupt>
-  94:	0c 94 5c 00 	jmp	0xb8	; 0xb8 <__bad_interrupt>
-  98:	0c 94 5c 00 	jmp	0xb8	; 0xb8 <__bad_interrupt>
-  9c:	0c 94 5c 00 	jmp	0xb8	; 0xb8 <__bad_interrupt>
-  a0:	0c 94 5c 00 	jmp	0xb8	; 0xb8 <__bad_interrupt>
+   4:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+   8:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+   c:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  10:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  14:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  18:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  1c:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  20:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  24:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  28:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  2c:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  30:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  34:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  38:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  3c:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  40:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  44:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  48:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  4c:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  50:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  54:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  58:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  5c:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  60:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  64:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  68:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  6c:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  70:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  74:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  78:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  7c:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  80:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  84:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  88:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  8c:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  90:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  94:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  98:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  9c:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
+  a0:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__bad_interrupt>
 
 000000a4 <__ctors_end>:
   a4:	11 24       	eor	r1, r1
@@ -78,23 +78,52 @@ Disassembly of section .text:
   aa:	cd bf       	out	0x3d, r28	; 61
   ac:	df e7       	ldi	r29, 0x7F	; 127
   ae:	de bf       	out	0x3e, r29	; 62
-  b0:	0e 94 5e 00 	call	0xbc	; 0xbc <main>
-  b4:	0c 94 5f 00 	jmp	0xbe	; 0xbe <_exit>
 
-000000b8 <__bad_interrupt>:
-  b8:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+000000b0 <__do_copy_data>:
+  b0:	10 e4       	ldi	r17, 0x40	; 64
+  b2:	a0 e0       	ldi	r26, 0x00	; 0
+  b4:	b0 e4       	ldi	r27, 0x40	; 64
+  b6:	ec ee       	ldi	r30, 0xEC	; 236
+  b8:	f0 e0       	ldi	r31, 0x00	; 0
+  ba:	00 e0       	ldi	r16, 0x00	; 0
+  bc:	0b bf       	out	0x3b, r16	; 59
+  be:	02 c0       	rjmp	.+4      	; 0xc4 <__do_copy_data+0x14>
+  c0:	07 90       	elpm	r0, Z+
+  c2:	0d 92       	st	X+, r0
+  c4:	a0 30       	cpi	r26, 0x00	; 0
+  c6:	b1 07       	cpc	r27, r17
+  c8:	d9 f7       	brne	.-10     	; 0xc0 <__do_copy_data+0x10>
 
-000000bc <main>:
+000000ca <__do_clear_bss>:
+  ca:	20 e4       	ldi	r18, 0x40	; 64
+  cc:	a0 e0       	ldi	r26, 0x00	; 0
+  ce:	b0 e4       	ldi	r27, 0x40	; 64
+  d0:	01 c0       	rjmp	.+2      	; 0xd4 <.do_clear_bss_start>
 
+000000d2 <.do_clear_bss_loop>:
+  d2:	1d 92       	st	X+, r1
+
+000000d4 <.do_clear_bss_start>:
+  d4:	a0 30       	cpi	r26, 0x00	; 0
+  d6:	b2 07       	cpc	r27, r18
+  d8:	e1 f7       	brne	.-8      	; 0xd2 <.do_clear_bss_loop>
+  da:	0e 94 73 00 	call	0xe6	; 0xe6 <main>
+  de:	0c 94 74 00 	jmp	0xe8	; 0xe8 <_exit>
+
+000000e2 <__bad_interrupt>:
+  e2:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+000000e6 <main>:
 #include <avr/io.h>
+#include "ff.h"		/* Declarations of FatFs API */
 
 
 int main(void)
 {
-  bc:	ff cf       	rjmp	.-2      	; 0xbc <main>
+  e6:	ff cf       	rjmp	.-2      	; 0xe6 <main>
 
-000000be <_exit>:
-  be:	f8 94       	cli
+000000e8 <_exit>:
+  e8:	f8 94       	cli
 
-000000c0 <__stop_program>:
-  c0:	ff cf       	rjmp	.-2      	; 0xc0 <__stop_program>
+000000ea <__stop_program>:
+  ea:	ff cf       	rjmp	.-2      	; 0xea <__stop_program>
