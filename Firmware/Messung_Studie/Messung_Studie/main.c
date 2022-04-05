@@ -127,7 +127,6 @@ int main(void)
 	sei();
 	while(1)
 	{
-		/*
 		if(!(PORTC_IN & 0x01))	//Schalter ein
 		{
 			if (messung_laeuft)	//Messung läuft bereits
@@ -141,14 +140,14 @@ int main(void)
 			else //Messung läuft noch nicht
 			{
 				timer_start();	//Messung starten
+				messung_laeuft = true;
 			}
-		} 
+		}
 		else//Schalter aus
 		{
 			timer_stop();	//Messung stoppen
-		}*/
-		wert_senden(messwert);
-		_delay_ms(500);
+			messung_laeuft = false;
+		}
 	}
 }
 
