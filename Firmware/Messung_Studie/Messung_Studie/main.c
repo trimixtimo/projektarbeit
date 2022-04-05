@@ -53,8 +53,8 @@ void setup_adc(void)
 {
 	ADC0_CTRLA = (ADC_RUNSTBY_bm | ADC_FREERUN_bm);	//Freerunning Modus, Single Ended 12bit, kein Leftadjust, Runstandby	
 	ADC0_CTRLC = ADC_PRESC_DIV256_gc;	//niedriger Takt für maximale Auflösung: 4 MHz / 256 = 15 kHz ADC Takt
-	ADC0_MUXPOS = 0x01; //für RAW-Input
-	//ADC0_MUXPOS = 0x02; //für HULL-Input
+	//ADC0_MUXPOS = 0x01; //für RAW-Input
+	ADC0_MUXPOS = 0x02; //für HULL-Input
 	ADC0_MUXNEG = 0x40; //Überflüssig weil Single Ended, zur Sicherheit
 	
 	ADC0_DBGCTRL = ADC_DBGRUN_bm;	//ADC debugging
@@ -114,6 +114,7 @@ void wert_senden(uint16_t wert)
 	char buffer[3];
 	itoa(wert, buffer, 10);
 	uart0_sendString(buffer);
+	uart0_sendString("\n");
 }
 
 int main(void)
