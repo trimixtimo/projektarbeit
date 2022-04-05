@@ -31,6 +31,8 @@
 #include <avr/cpufunc.h>
 #include <avr/interrupt.h>
 #include <stdbool.h>
+#include <string.h>
+#include <stdlib.h>
 
 volatile uint16_t messwert = 0;	//globale, nicht von Optimierung erfasste Variable
 bool neuer_messwert = 0;	//ungespeicherter Messwert vorhanden
@@ -76,6 +78,18 @@ void setup_uart(void)
 	USART0.CTRLB = USART_RXEN_bm |USART_TXEN_bm;	//uart rx und tx aktivieren
 }
 
+void uart0_sendChar(char c)
+{
+	while (!(USART0.STATUS & USART_DREIF_bm)){;}
+	USART0.TXDATAL = c;
+}
+void uart0_sendString(char *str)
+{
+	for (uint8_t i = 0; i < strlen(str); i++)
+	{
+		uart0_sendChar(str[i]);
+	}
+}
 void timer_start(void)
 {
 	TCA0_SINGLE_CTRLA |= TCA_SINGLE_ENABLE_bm;	//Timer starten
@@ -95,12 +109,11 @@ uint16_t adc_read(void)
 {
 	return ADC0_RES;
 }
-void wert_speichern(uint16_t wert)
+void wert_senden(uint16_t wert)
 {
-	//Datei öffnen
-	//Wert konvertieren
-	//Wert anhängen
-	//Datei schließen
+	char buffer[3];
+	itoa(wert, buffer, 10);
+	uart0_sendString(buffer);
 }
 
 int main(void)
@@ -110,18 +123,19 @@ int main(void)
 	setup_vref();
 	setup_adc();
 	setup_timer();
-	timer_start();
+	setup_uart();
 	sei();
-	
 	while(1)
 	{
+		/*
 		if(!(PORTC_IN & 0x01))	//Schalter ein
 		{
 			if (messung_laeuft)	//Messung läuft bereits
 			{
 				if (neuer_messwert)	//Neuer Messwert vorhanden
 				{
-					wert_speichern(messwert);
+					wert_senden(messwert);
+					neuer_messwert = false;
 				}
 			} 
 			else //Messung läuft noch nicht
@@ -132,7 +146,9 @@ int main(void)
 		else//Schalter aus
 		{
 			timer_stop();	//Messung stoppen
-		}
+		}*/
+		wert_senden(messwert);
+		_delay_ms(500);
 	}
 }
 
@@ -141,4 +157,6 @@ ISR(TCA0_OVF_vect)
 	TCA0_SINGLE_INTFLAGS = 1; //Löscht das Interrupt-Flag
 	timer_reset();	//Timer wieder auf 0
 	messwert = adc_read();
+	neuer_messwert = true;
+	
 }
