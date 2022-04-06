@@ -4,7 +4,7 @@ FID = fopen(fullfile(path,file));                  % Datei in Matlab öffnen
 dataFromfile = textscan(FID, '%s');     % Die Werte als String lesen für HEX Verarbeitung
 dataFromfile = dataFromfile{1};
 decData = hex2dec(dataFromfile);        % Hexadezimal in Dezimal umwandeln
-voltage = decData * 0.80566; % [mV]
+voltage = decData * (3298/4096); % [mV]
 
 %% Zeitkonstante definieren
 dt = 1; % [Millisekunden]                Zeitintervall zwischen zwei Messpunkten == 1000Hz
