@@ -21,8 +21,8 @@
  * PD7 VSENSE
  */
 
-#define F_CPU 16000000UL	//Takt 4MHz
-#define periodendauer_us 100UL	//Abtastrate ADC
+#define F_CPU 16000000UL	//Takt 16MHz
+#define periodendauer_us 100	//Abtastrate ADC in µs
 #define baudrate_reg(baudrate) ((float)(F_CPU * 64 / (16 * (float)baudrate)))
 #define baudrate 500000UL
 
@@ -53,7 +53,8 @@ void setup_vref(void)
 void setup_adc(void)
 {
 	ADC0_CTRLA = (ADC_RUNSTBY_bm | ADC_FREERUN_bm);	//Freerunning Modus, Single Ended 12bit, kein Leftadjust, Runstandby	
-	ADC0_CTRLC = ADC_PRESC_DIV8_gc;	//niedriger Takt für maximale Auflösung: 4 MHz / 256 = 15 kHz ADC Takt
+	ADC0_CTRLC = ADC_PRESC_DIV8_gc;	//niedriger Takt für maximale Auflösung: 16 MHz / 8 = 2 MHz ADC Takt
+	
 	if (hull)
 	{
 		ADC0_MUXPOS = 0x02; //für HULL-Input
@@ -62,6 +63,7 @@ void setup_adc(void)
 	{
 		ADC0_MUXPOS = 0x01; //für RAW-Input
 	}
+	
 	ADC0_MUXNEG = 0x40; //Überflüssig weil Single Ended, zur Sicherheit
 	ADC0_DBGCTRL = ADC_DBGRUN_bm;	//ADC debugging
 	ADC0_CTRLA |= ADC_ENABLE_bm;	//ADC einschalten
@@ -71,7 +73,7 @@ void setup_adc(void)
 void setup_timer(void)
 {
 	TCA0_SINGLE_PER = periodendauer_us;
-	TCA0_SINGLE_CTRLA = (TCA_SINGLE_RUNSTDBY_bm | (0x04 << 1) | TCA_SINGLE_ENABLE_bm);	//Prescaler 4: 4 MHz / 4 = 1 MHz
+	TCA0_SINGLE_CTRLA = (TCA_SINGLE_RUNSTDBY_bm | (0x04 << 1) | TCA_SINGLE_ENABLE_bm);	//Prescaler 16: 16 MHz / 16 = 1 MHz
 	TCA0_SINGLE_DBGCTRL = 0x01;	//debugging
 	TCA0_SINGLE_INTCTRL = TCA_SINGLE_OVF_bm;	//Überlauf-Interrupt aktiviert	
 }
@@ -125,7 +127,7 @@ void wert_senden(uint16_t wert)
 
 int main(void)
 {
-	ccp_write_io((void *) & (CLKCTRL.OSCHFCTRLA), (0b10011101)); //HF Clock Runstandby, 4 MHz CLK_Main, Autotune, CLK_PER = CLK_Main
+	ccp_write_io((void *) & (CLKCTRL.OSCHFCTRLA), (0b10011101)); //HF Clock Runstandby, 16 MHz CLK_Main, Autotune, CLK_PER = CLK_Main
 	setup_io();
 	setup_vref();
 	setup_adc();
