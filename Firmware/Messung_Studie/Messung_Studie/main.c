@@ -54,22 +54,9 @@ void setup_adc(void)
 {
 	ADC0_CTRLA = (ADC_RUNSTBY_bm | ADC_FREERUN_bm);	//Freerunning Modus, Single Ended 12bit, kein Leftadjust, Runstandby	
 	ADC0_CTRLC = ADC_PRESC_DIV32_gc;	//niedriger Takt für maximale Auflösung: 16 MHz / 32 = 500 kHz ADC Takt
-	
-	if (hull)
-	{
-		ADC0_MUXPOS = 0x02; //für HULL-Input
-	} 
-	else
-	{
-		ADC0_MUXPOS = 0x01; //für RAW-Input
-	}
-	
-	ADC0_MUXNEG = 0x40; //Überflüssig weil Single Ended, zur Sicherheit
+	ADC0_MUXNEG = 0x40; //überflüssig, weil single-ended, nur zur Sicherheit
 	ADC0_DBGCTRL = ADC_DBGRUN_bm;	//ADC debugging
 	ADC0_SAMPCTRL = 0x10;		//Sample Dauer um 16 Takte verlängern -> geringere Belastung der Signalquelle
-	ADC0_CTRLA |= ADC_ENABLE_bm;	//ADC einschalten
-	_delay_ms(1);
-	ADC0_COMMAND = ADC_STCONV_bm;	//erste Messung starten
 }
 void setup_timer(void)
 {
@@ -113,6 +100,21 @@ void timer_stop(void)
 void timer_reset (void)
 {
 	TCA0_SINGLE_CNT = 0x00;	//Timer zurücksetzen
+}
+void adc_channel_selection(void){
+	ADC0_COMMAND = ADC_SPCONV_bm;	//Messung stoppen
+	if (hull)
+	{
+		ADC0_MUXPOS = 0x02; //für HULL-Input
+	}
+	else
+	{
+		ADC0_MUXPOS = 0x01; //für RAW-Input
+	}
+	_delay_ms(1);
+	ADC0_CTRLA |= ADC_ENABLE_bm;	//ADC einschalten
+	_delay_ms(1);
+	ADC0_COMMAND = ADC_STCONV_bm;	//erste Messung starten
 }
 uint16_t adc_read(void)
 {
