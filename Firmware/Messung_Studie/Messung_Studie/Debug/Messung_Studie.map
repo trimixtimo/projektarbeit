@@ -393,45 +393,44 @@ END GROUP
  *(.fini0)
                 0x000003a6                _etext = .
 
-.data           0x00804000        0x4 load address 0x000003a6
+.data           0x00804000        0x2 load address 0x000003a6
                 0x00804000                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
- .data.hull     0x00804000        0x1 main.o
-                0x00804000                hull
  *(.gnu.linkonce.d*)
  *(.rodata)
  *(.rodata*)
  .rodata.str1.1
-                0x00804001        0x2 main.o
+                0x00804000        0x2 main.o
  *(.gnu.linkonce.r*)
-                0x00804004                . = ALIGN (0x2)
- *fill*         0x00804003        0x1 
-                0x00804004                _edata = .
-                0x00804004                PROVIDE (__data_end, .)
+                0x00804002                . = ALIGN (0x2)
+                0x00804002                _edata = .
+                0x00804002                PROVIDE (__data_end, .)
 
-.bss            0x00804004        0x4
-                0x00804004                PROVIDE (__bss_start, .)
+.bss            0x00804002        0x5
+                0x00804002                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
+ .bss.hull      0x00804002        0x1 main.o
+                0x00804002                hull
  .bss.messung_laeuft
-                0x00804004        0x1 main.o
-                0x00804004                messung_laeuft
+                0x00804003        0x1 main.o
+                0x00804003                messung_laeuft
  .bss.neuer_messwert
-                0x00804005        0x1 main.o
-                0x00804005                neuer_messwert
- .bss.messwert  0x00804006        0x2 main.o
-                0x00804006                messwert
+                0x00804004        0x1 main.o
+                0x00804004                neuer_messwert
+ .bss.messwert  0x00804005        0x2 main.o
+                0x00804005                messwert
  *(COMMON)
-                0x00804008                PROVIDE (__bss_end, .)
+                0x00804007                PROVIDE (__bss_end, .)
                 0x000003a6                __data_load_start = LOADADDR (.data)
-                0x000003aa                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x000003a8                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00804008        0x0
+.noinit         0x00804007        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x00804008                _end = .
+                0x00804007                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0

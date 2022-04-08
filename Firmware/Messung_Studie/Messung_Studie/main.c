@@ -21,10 +21,10 @@
  * PD7 VSENSE
  */
 
-#define F_CPU 4000000UL	//Takt 4MHz
-#define periodendauer_us 1000UL	//Abtastrate ADC
+#define F_CPU 16000000UL	//Takt 4MHz
+#define periodendauer_us 100UL	//Abtastrate ADC
 #define baudrate_reg(baudrate) ((float)(F_CPU * 64 / (16 * (float)baudrate)))
-#define baudrate 57600
+#define baudrate 500000UL
 
 #include <avr/io.h>
 #include <util/delay.h>
@@ -37,7 +37,7 @@
 volatile uint16_t messwert = 0;	//globale, nicht von Optimierung erfasste Variable
 bool neuer_messwert = 0;	//ungespeicherter Messwert vorhanden
 bool messung_laeuft = 0;		//laufende Messung
-bool hull = true;
+bool hull = false;
 
 void setup_io(void)
 {
@@ -53,7 +53,7 @@ void setup_vref(void)
 void setup_adc(void)
 {
 	ADC0_CTRLA = (ADC_RUNSTBY_bm | ADC_FREERUN_bm);	//Freerunning Modus, Single Ended 12bit, kein Leftadjust, Runstandby	
-	ADC0_CTRLC = ADC_PRESC_DIV256_gc;	//niedriger Takt für maximale Auflösung: 4 MHz / 256 = 15 kHz ADC Takt
+	ADC0_CTRLC = ADC_PRESC_DIV8_gc;	//niedriger Takt für maximale Auflösung: 4 MHz / 256 = 15 kHz ADC Takt
 	if (hull)
 	{
 		ADC0_MUXPOS = 0x02; //für HULL-Input
@@ -71,13 +71,13 @@ void setup_adc(void)
 void setup_timer(void)
 {
 	TCA0_SINGLE_PER = periodendauer_us;
-	TCA0_SINGLE_CTRLA = (TCA_SINGLE_RUNSTDBY_bm | (0x02 << 1) | TCA_SINGLE_ENABLE_bm);	//Prescaler 4: 4 MHz / 4 = 1 MHz
+	TCA0_SINGLE_CTRLA = (TCA_SINGLE_RUNSTDBY_bm | (0x04 << 1) | TCA_SINGLE_ENABLE_bm);	//Prescaler 4: 4 MHz / 4 = 1 MHz
 	TCA0_SINGLE_DBGCTRL = 0x01;	//debugging
 	TCA0_SINGLE_INTCTRL = TCA_SINGLE_OVF_bm;	//Überlauf-Interrupt aktiviert	
 }
 void setup_uart(void)
 {
-	USART0.BAUD = (uint16_t) baudrate_reg(baudrate);	//set Baud rate for FME
+	USART0.BAUD = (uint16_t) baudrate_reg(baudrate);	//set Baud rate
 	USART0.CTRLC = USART_CMODE_ASYNCHRONOUS_gc | USART_PMODE_DISABLED_gc | USART_SBMODE_1BIT_gc | USART_CHSIZE_8BIT_gc;	//asynchron | no parity | 1 stop bit | 8 data bits
 	//USART0.CTRLA = USART_RXCIE_bm;	//enable receive interrupt
 	USART0.DBGCTRL = USART_DBGRUN_bm;	//debugging mode
@@ -125,7 +125,7 @@ void wert_senden(uint16_t wert)
 
 int main(void)
 {
-	ccp_write_io((void *) & (CLKCTRL.OSCHFCTRLA), (0b10001101)); //HF Clock Runstandby, 4 MHz CLK_Main, Autotune, CLK_PER = CLK_Main
+	ccp_write_io((void *) & (CLKCTRL.OSCHFCTRLA), (0b10011101)); //HF Clock Runstandby, 4 MHz CLK_Main, Autotune, CLK_PER = CLK_Main
 	setup_io();
 	setup_vref();
 	setup_adc();
