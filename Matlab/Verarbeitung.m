@@ -14,6 +14,8 @@ figure;
 x = 0:dt:((height(voltage)-1)*dt);      % Zeitachse in ms
 y = transpose(voltage);                 % Signalachse in mV
 plot(x,y);
+grid on
+grid minor
 title('Spannung über Zeit');            % Titel des Graphen
 xlabel('Zeit in ms');                   % Bezeichnung der x-Achse 
 ylabel('Spannung in mV');               % Bezeichnung der y-Achse
