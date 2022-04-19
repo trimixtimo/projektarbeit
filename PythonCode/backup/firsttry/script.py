@@ -11,8 +11,8 @@ from tkinter import *
 from tkinter.filedialog import asksaveasfile
 #SerialEinbindung
 ser = serial.Serial(
-    port='COM4',\
-    baudrate=57600,\
+    port='COM5',\
+    baudrate=250000,\
     parity=serial.PARITY_NONE,\
     stopbits=serial.STOPBITS_ONE,\
     bytesize=serial.EIGHTBITS,\
@@ -69,10 +69,12 @@ def my_mainloop():
         Datenpaket_1BYTE.append(chr(c)) #convert from ANSII
         Datenpaket = ''.join(str(v) for v in Datenpaket_1BYTE) #Make a string from array
         #Überprüfen wann \n kommt und dies als Paket wahrnehmen/verarbeiten
+        print(Datenpaket)
         if chr(c) == '\n':
             #
             x.append(next(index))
-            y.append(int(Datenpaket, 16)) #Eingangswert von HEX auf DEZ, und in Y-ACHSE hinzufügen
+            print(index)
+            y.append(Datenpaket) #Eingangswert von HEX auf DEZ, und in Y-ACHSE hinzufügen
             label(y[-1])
             ax.cla()
             ax.plot(x, y)
@@ -80,10 +82,10 @@ def my_mainloop():
             plt.ylabel("Spannung in mV")
             display(fig);  
             clear_output(wait = True)
-            plt.pause(0.001)
+            plt.pause(0.000000000000001)
             #
             Datenpaket_1BYTE = [] #Array für nächstes Paket wd frei machen
         break
     if plt_aktiv == True:
-        window.after(100, my_mainloop)  # run again after 1000ms (1s)
+        window.after(0, my_mainloop)  # run again after 100ms (1s)
 window.mainloop()
