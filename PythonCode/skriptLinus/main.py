@@ -55,7 +55,7 @@ def stop_Msrmnt():
 def serialReader():
     count = 0
     date = datetime.now().strftime(r"%I-%M-%S-%d_%m_%Y")    #create timestamp
-    textfile = open(r"C:\Users\linus\Desktop\Projektarbeit2\Messung_" + date + ".txt", "a+")    #create new file
+    textfile = open(r"Messung_" + date + ".txt", "a+")    #create new file
     while(status == ON):
         if(serialPort.readline() != False): #prevent empty bits at beginning
             serial_bytes = serialPort.readline()

@@ -11,6 +11,9 @@ import numpy as np
 from datetime import datetime
 from tkinter.filedialog import asksaveasfile
 #
+#----Needed for communication with serial port----
+from serialConnection import serialPort
+print("Verbunden auf:" + serialPort.portstr)
 
 DELAY = 1  # in millisecs
 active = False
