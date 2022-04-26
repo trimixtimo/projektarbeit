@@ -42,9 +42,7 @@ def WriteSerial(command):
     ReadSerial()
 #----------Messung am Gerät starten/Buttons deaktivieren----------
 def run_script(var):
-    global active, textfile, count
-    entrymsg = SaveDirectoryDisplay.get()
-    textfile = open(entrymsg + '/Messung' + datetime.today().strftime('_%H-%M-%S_%d-%m-%Y') + ".txt", "a+")
+    global active, count
     count = 0
     active = True
     StartHulButton['state'] = DISABLED
@@ -54,28 +52,34 @@ def run_script(var):
     WriteSerial(var)
 #Messung stoppen
 def run_stop():
-    global active, textfile, y_Werte
+    global active, y_Werte
     active = False
-    textfile.write(y_Werte.decode("ascii"))
+    entrymsg = SaveDirectoryDisplay.get()
+    textfile = open(entrymsg + '/Messung' + datetime.today().strftime('_%H-%M-%S_%d-%m-%Y') + ".txt", "a+")
+    for index, item in enumerate(y_Werte):
+        try:
+            #y_Werte[index] = item.decode("ascii")
+            #y_Werte[x] = x.decode("ascii").rstrip("\n")
+            textfile.write(item.decode("ascii"))
+        except UnicodeDecodeError:  #prevent random special chars
+            continue
     StartHulButton['state'] = NORMAL
     StartRawButton['state'] = NORMAL
     button3['state'] = DISABLED
     SaveButton['state'] = NORMAL
     WriteSerial("stp")
-    var.set('Messung gestoppt..')
-    var1.set('Messung gestoppt..')
 #----------im angegeben Verzeichnis als .txt abspeichern----------
 def SelectSaveDirectory():
     filedirectory = filedialog.askdirectory(title="Speicherort für .txt auswählen..")
     print(filedirectory)
     SaveDirectoryDisplay.configure(state=NORMAL)
     SaveDirectoryDisplay.delete(0,END)
-    SaveDirectoryDisplay.insert(0, filedirectory + '/Messung' + datetime.today().strftime('_%H-%M-%S_%d-%m-%Y'))
+    SaveDirectoryDisplay.insert(0, filedirectory)
     SaveDirectoryDisplay.configure(state=DISABLED)
     #file = asksaveasfile(initialfile =  'Messung' + datetime.today().strftime('_%H-%M-%S_%d-%m-%Y'), filetypes=[('text file','*.txt'),('All Files', '*.*')], defaultextension = '.txt', title="Speicherort für .txt auswählen..",)
     #print(file.name)
     #np.savetxt(file.name, y_Werte, fmt='%s', delimiter='')
-    print('Messung gespeichert')
+    print('Speicherort gespeichert')
 #----------Arrays leeren----------
 def Delete():
     global active, x_Werte, y_Werte, count
@@ -101,8 +105,6 @@ root.rowconfigure(1, weight=3)
 #
 var = StringVar()
 var1 = StringVar()
-var.set('Warte auf Messung..')
-var1.set('Warte auf Messung..')
 # Use TkAgg
 matplotlib.use("TkAgg")
 # Create a figure of specific size
@@ -120,7 +122,7 @@ labelframe2 = LabelFrame(root, text="Software", font=("Arial", 10, 'bold'))
 labelframe2.grid(sticky='we')
 #toplabel = Label(labelframe1, text="You can put your happy thoughts here")  
 #toplabel.pack()  
-SaveDirectoryDisplay = Entry(labelframe2, relief="sunken", width=150)
+SaveDirectoryDisplay = Entry(labelframe2, relief="sunken", width=100)
 SaveDirectoryDisplay.grid(column=1, row=0)
 SaveDirectoryDisplay.insert(0, str(Path(__file__).parent.absolute()))
 SaveDirectoryDisplay.configure(state=DISABLED)
@@ -156,7 +158,6 @@ def SerialProgram():
                 Wert, Time = ReadSerial()
             try:
                 print('Wert(' + str(Time) + '): ' + Wert.decode("ascii").rstrip("\n"))
-                print(len(y_Werte))
                 #Arrays zum plotten füllen
                 #x_plot.append(Time)
                 #if len(x_plot) >= 100:
