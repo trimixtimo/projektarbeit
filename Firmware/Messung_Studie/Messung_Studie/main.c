@@ -25,7 +25,7 @@
 #define periodendauer_us 100	//Abtastrate ADC in µs
 #define baudrate_reg(baudrate) ((float)(F_CPU * 64 / (16 * (float)baudrate)))
 #define baudrate 500000UL
-#define uart0_maxstrlen 3
+#define uart0_maxstrlen 4
 #define hull_cmd "hul"
 #define raw_cmd "raw"
 #define stop_cmd "stp"
@@ -143,6 +143,7 @@ int main(void)
 {
 	CCP = CCP_IOREG_gc;	//geschützes Register entsperren
 	CLKCTRL.OSCHFCTRLA = 0b10011101; //HF Clock Runstandby, 16 MHz CLK_Main, Autotune, CLK_PER = CLK_Main
+	CPUINT.LVL1VEC = USART0_RXC_vect_num;
 	
 	setup_io();
 	setup_vref();
@@ -156,7 +157,13 @@ int main(void)
 
 	
 	while(1)
-	{}
+	{
+		/*PORTD_OUTSET = 0b01100000;	//grün
+		_delay_ms(50);
+		PORTD_OUTCLR = 0b01100000;	//blau aus
+		_delay_ms(50);
+		*/
+	}
 }
 
 ISR(TCA0_OVF_vect)
@@ -188,8 +195,7 @@ ISR(USART0_RXC_vect)
 				adc_channel_selection();
 				timer_start();	//Messung starten
 				messung_laeuft = true;
-				PORTD_OUTSET = 0b00100000;	//grün
-				PORTD_OUTCLR = 0b01000000;	//blau aus
+
 			}
 			if(strcmp(uart0_string, raw_cmd) == 0)
 			{
