@@ -25,7 +25,7 @@
 #define periodendauer_us 100	//Abtastrate ADC in µs
 #define baudrate_reg(baudrate) ((float)(F_CPU * 64 / (16 * (float)baudrate)))
 #define baudrate 500000UL
-#define uart0_maxstrlen 4
+#define uart0_maxstrlen 3
 #define hull_cmd "hul"
 #define raw_cmd "raw"
 #define stop_cmd "stp"
@@ -195,6 +195,8 @@ ISR(USART0_RXC_vect)
 				adc_channel_selection();
 				timer_start();	//Messung starten
 				messung_laeuft = true;
+				PORTD_OUTSET = 0b00100000;	//blau aus
+				PORTD_OUTCLR = 0b01000000;	//grün an
 
 			}
 			if(strcmp(uart0_string, raw_cmd) == 0)
@@ -203,7 +205,7 @@ ISR(USART0_RXC_vect)
 				adc_channel_selection();
 				timer_start();	//Messung starten
 				messung_laeuft = true;
-				PORTD_OUTSET = 0b01000000;	//blau
+				PORTD_OUTSET = 0b01000000;	//blau an
 				PORTD_OUTCLR = 0b00100000;	//grün aus
 			}
 			if(strcmp(uart0_string, stop_cmd) == 0)
@@ -211,7 +213,7 @@ ISR(USART0_RXC_vect)
 				neuer_messwert = 0;
 				timer_stop();	//Messung stoppen
 				messung_laeuft = false;
-				PORTD_OUTSET = 0b01100000;	//beide LEDs
+				PORTD_OUTSET = 0b01100000;	//beide LEDs an
 			}			
 		}
 	}
