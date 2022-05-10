@@ -63,7 +63,7 @@ function startRawMsrmnt(btn, event)
     Datestring = strrep(Datestring,':','-');
 
     
-    fileID = fopen('C:/Users/linus/Desktop/Projektarbeit2/Messungen/MessungRAW_'+Datestring+'.txt','a');
+    fileID = fopen('Messungen/MessungRAW_'+Datestring+'.txt','a');
     
    
     for k = 1:5
@@ -105,7 +105,7 @@ function startHulMsrmnt(btn, event)
     Datestring = strrep(Datestring,' ','_');
     Datestring = strrep(Datestring,':','-');
 
-    fileID = fopen('C:/Users/linus/Desktop/Projektarbeit2/Messungen/MessungHULL_'+Datestring+'.txt','a');
+    fileID = fopen('Messungen/MessungHULL_'+Datestring+'.txt','a');
     
     for k = 1:5
         write(serialP,'hul\n','string')
