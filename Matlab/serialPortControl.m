@@ -138,7 +138,7 @@ end
 %---------Stoppe Messung-----------
 function stopMsrmnt(btn, event)
     status = 0;
-    pause(0.1)
+    pause(0.3) %verhindert, dass stp Befehl am Ende der Signaldatei auftaucht und durch falsche Zeichen Fehlermeldung auftritt
     for k = 1:10
         write(serialP,'stp\n','string')
     end
