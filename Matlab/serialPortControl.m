@@ -3,7 +3,7 @@ function serialPortControl
 clear %needed to open new connection to serialPort
 
 %Connect serialport
-serialP = serialport('COM4',500000,'Timeout',0.1);
+serialP = serialport('COM3',500000,'Timeout',0.1);
 
 %Create status variable
 global status;
@@ -63,7 +63,7 @@ function startRawMsrmnt(btn, event)
     Datestring = strrep(Datestring,':','-');
 
     
-    fileID = fopen('Messungen/Melissa200W_MessungRAW_'+Datestring+'.txt','a');
+    fileID = fopen('Messungen/TestKlebepositionOberschenkelAussen_MessungRAW_'+Datestring+'.txt','a');
     
    
     for k = 1:5
