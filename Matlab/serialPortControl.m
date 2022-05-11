@@ -63,7 +63,7 @@ function startRawMsrmnt(btn, event)
     Datestring = strrep(Datestring,':','-');
 
     
-    fileID = fopen('Messungen/MessungRAW_'+Datestring+'.txt','a');
+    fileID = fopen('Messungen/Melissa200W_MessungRAW_'+Datestring+'.txt','a');
     
    
     for k = 1:5
