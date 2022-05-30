@@ -2,7 +2,7 @@ function serialPortControl
 
 clear %needed to open new connection to serialPort
 
-%Connect serialport
+%Connect serial port
 serialP = serialport('COM3',500000,'Timeout',0.1);
 
 %Create status variable
@@ -56,36 +56,47 @@ btn3.ButtonPushedFcn = {@stopMsrmnt};
 %---------Rohmessung--------------
 function startRawMsrmnt(btn, event)
 
+    %create empty array to save data
     voltageData = [];
     
+    %create string with current date and time for file association
     Datestring = string(datetime('now'));
     Datestring = strrep(Datestring,' ','_');
     Datestring = strrep(Datestring,':','-');
 
+    %create .txt file to save data with unique filename
+    fileID = fopen('Messungen/MessungRAW_'+Datestring+'.txt','a');
     
-    fileID = fopen('Messungen/TestKlebepositionOberschenkelAussen_MessungRAW_'+Datestring+'.txt','a');
-    
-   
+    %command is sended 5 times, to ensure the controller notices it while
+    %sending the data with 500k baud
     for k = 1:5
         write(serialP,'raw\n','string')
     end
     
+    %change status variable to true
     status = 1;
 
     while(status == 1)
-        loopDataString = read(serialP,10000,"string");
-        fprintf(fileID,loopDataString); %10000 Zeichen entsprechen 2500 Messwerten, die auf einmal geschrieben werden (4 Zeichen pro Messwert)
+        %read data from serialport buffer
+        loopDataString = read(serialP,10000,"string"); 
+        %10000 chars are equal to 2500 data points, because every data
+        %point consists of 4 chars (3 hex digits and \n to break row)
+        
+        %save data to textfile
+        fprintf(fileID,loopDataString); 
    
+        %transform string data to voltage for live plotting
         loopDataHex = split(loopDataString);
-        %length(loopDataHex)
         loopDataHex(end) = [];
-        %length(loopDataHex)
         loopDataDec = hex2dec(loopDataHex);
         loopDataVolt = loopDataDec * (3298/4096);
         voltageData = [voltageData, transpose(loopDataVolt)];
         
+        %let MATLAB look outside the loop for variable change
+        %needed to make stop function work
         drawnow
         
+        %plot last 10 seconds of data in UI figure
         if length(voltageData) <= 100000
             plot(ax,voltageData)
         else
@@ -99,52 +110,72 @@ end
 %----------Hüllkurvenmessung--------------
 function startHulMsrmnt(btn, event)
     
+    %create empty array to save data
     voltageData = [];
     
+    %create string with current date and time for file association
     Datestring = string(datetime('now'));
     Datestring = strrep(Datestring,' ','_');
     Datestring = strrep(Datestring,':','-');
 
+    %create .txt file to save data with unique filename
     fileID = fopen('Messungen/MessungHULL_'+Datestring+'.txt','a');
     
+    %command is sended 5 times, to ensure the controller notices it while
+    %sending the data with 500k baud
     for k = 1:5
         write(serialP,'hul\n','string')
     end
     
+    %change status variable to true
     status = 1;
     
     while(status ==1)
+        %read data from serialport buffer
         loopDataString = read(serialP,10000,"string");
-        fprintf(fileID,loopDataString); %10000 Zeichen entsprechen 2500 Messwerten, die auf einmal geschrieben werden (4 Zeichen pro Messwert)
+        %10000 chars are equal to 2500 data points, because every data
+        %point consists of 4 chars (3 hex digits and \n to break row)
+        
+        %save data to textfile
+        fprintf(fileID,loopDataString);
    
+        %transform string data to voltage for live plotting
         loopDataHex = split(loopDataString);
         loopDataHex(end) = [];
         loopDataDec = hex2dec(loopDataHex);
         loopDataVolt = loopDataDec * (3298/4096);
         voltageData = [voltageData, transpose(loopDataVolt)];
         
+        %let MATLAB look outside the while loop for variable change
+        %needed to make stop function work
         drawnow
         
+        %plot last 10 seconds of data in UI figure
         if length(voltageData) <= 100000
             plot(ax,voltageData)
         else
             plot(ax,voltageData(end-100000:end))
         end
-
     end
     fclose(fileID);
 end
 
 %---------Stoppe Messung-----------
 function stopMsrmnt(btn, event)
+    %change status variable to false
     status = 0;
-    pause(0.3) %verhindert, dass stp Befehl am Ende der Signaldatei auftaucht und durch falsche Zeichen Fehlermeldung auftritt
+    %pause to stop measurement-while-loop before sending stop-command
+    %without pause, stop-command sometimes is interpreted as streamed
+    %sensor data and occurs in saved data, causing errors in data
+    %processing
+    pause(0.3)
+    %stop-command is sended 10 times in a row to ensure correct stoppage of
+    %measurment, othertimes the controller does not "hear" the command
+    %because high speed of data streaming
     for k = 1:10
         write(serialP,'stp\n','string')
     end
 end
-        
-
-
+  
 
 end
